@@ -1,6 +1,5 @@
 package org.lagoonos.utils.sql;
 
-import java.io.File;
 import java.io.IOException;
 
 import junit.framework.Assert;
@@ -9,6 +8,8 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.junit.Test;
 
 public class JsonToSqlTest {
+	
+	
 	private static final String EXPECTED_OUTPUT = 
 			"INSERT INTO role (id, role_type) VALUES (1, 'admin');\r\n"
 			+"INSERT INTO role (id, role_type) VALUES (2, 'read_only');\r\n"

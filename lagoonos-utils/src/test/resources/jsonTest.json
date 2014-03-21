@@ -1,9 +1,10 @@
 {
+
 	"role":[{"id": 1,
 		"role_type": "admin"},
 		{"id": 2,
 		"role_type": "read_only"}],
-		
+
 	"user":[{"id": 1,
 		"name": "frank",
 		"role_id": 1},

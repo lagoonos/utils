@@ -70,27 +70,26 @@ public class StringUtils implements Serializable{
 		return convertStreamToString(is);
 	}
 
-	public static String convertStreamToString(InputStream is)
-			throws IOException {
+	public static String convertStreamToString(InputStream is) {
 		
 		if (is != null) {
 			Writer writer = new StringWriter();
 
 			char[] buffer = new char[1024];
 			try {
-				Reader reader = new BufferedReader(new InputStreamReader(is,
-						"UTF-8"));
+				Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 				int n;
 				while ((n = reader.read(buffer)) != -1) {
 					writer.write(buffer, 0, n);
 				}
-			} finally {
-				is.close();
+			} catch(Exception e){
+				throw new LagoonUtilsException("Could not convert InputStream to String", e);
+			}finally {
+					IOUtils.closeQuietly(is);
 			}
 			return writer.toString();
-		} else {
-			return "";
-		}
+		} 
+		return "";
 	}
 
 	public static String getEncapsulatedString(String content, String from,
@@ -179,7 +178,7 @@ public class StringUtils implements Serializable{
 
 	public static int endIndexOf(String string, String find) {
 		int pos = string.indexOf(find);
-		if(pos>-1){
+		if(pos > -1){
 			pos += find.length();
 		}
 		return pos;
@@ -242,10 +241,10 @@ public class StringUtils implements Serializable{
 	    return string1.substring(start, (start + max));
 	}
 
-	public static int countOccurrenceInList(List<String> itemNames, String name) {
+	public static int countOccurrenceInList(List<String> itemValues, String value) {
 		int cnt =0;
-		for(String listedName:itemNames){
-			if(listedName.equals(name)){
+		for(String listedName:itemValues){
+			if(listedName.equals(value)){
 				cnt++;
 			}
 		}
@@ -281,7 +280,7 @@ public class StringUtils implements Serializable{
 	public static String replaceFirstOccurrence(String containingString, String find,
 			String replace) {
 		int pos = containingString.indexOf(find);
-		if(pos<0){
+		if(pos < 0){
 			return containingString;
 		}
 			
