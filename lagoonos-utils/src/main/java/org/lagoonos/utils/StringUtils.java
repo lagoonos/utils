@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 	Utility class with helper methods for String operations.
+ * 	Utility class with helper methods for java.lang.String operations.
  * <br/>
  * <p>
     Copyright (C) 2014  Sebastian Gerstenlauer ( gerstenlauer@gmx.net )
@@ -39,7 +40,9 @@ import java.util.regex.Pattern;
  * @author Sebastian Gerstenlauer ( gerstenlauer@gmx.net )
  *
  */
-public class StringUtils {
+public class StringUtils implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	public static String readFileAsString(String filePath)
 			throws java.io.IOException {
