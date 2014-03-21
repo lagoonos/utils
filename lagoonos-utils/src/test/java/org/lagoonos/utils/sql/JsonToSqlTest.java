@@ -18,8 +18,7 @@ public class JsonToSqlTest {
 	
 	@Test
 	public void getSqlInsertsFromJsonTest() throws JsonProcessingException, IOException{
-		File file = new File(JsonToSql.class.getClassLoader().getResource("jsonTest.json").getFile());
-		String sqlInserts = JsonToSql.getSqlInsertsFromJson(file);
+		String sqlInserts = JsonToSql.getSqlInsertsFromJsonResource("jsonTest.json");
 		System.out.println(sqlInserts);
 		Assert.assertEquals(EXPECTED_OUTPUT, sqlInserts);
 	}

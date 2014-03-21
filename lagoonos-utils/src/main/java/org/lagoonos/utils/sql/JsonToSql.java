@@ -36,10 +36,14 @@ import org.codehaus.jackson.map.ObjectMapper;
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
     </p>
  * @author Sebastian Gerstenlauer ( gerstenlauer@gmx.net )
- *
  */
 public class JsonToSql {
 
+	public static String getSqlInsertsFromJsonResource(String resourceName) throws JsonProcessingException, IOException{
+		File jsonFile = new File(JsonToSql.class.getClassLoader().getResource(resourceName).getFile());
+		return getSqlInsertsFromJson(jsonFile);
+	}
+	
 	public static String getSqlInsertsFromJson(File jsonFile) throws JsonProcessingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
 		BufferedReader fileReader = new BufferedReader(
